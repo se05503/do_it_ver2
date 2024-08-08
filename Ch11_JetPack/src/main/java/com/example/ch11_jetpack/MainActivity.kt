@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // SecurityException resolve
+        val dexOutputDir: File = codeCacheDir
+        dexOutputDir.setReadOnly()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // 액티비티가 실행되면서 처음에 한 번만 호출됨
@@ -17,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         val menuItem = menu?.findItem(R.id.menu_search)
         val searchView = menuItem?.actionView as SearchView
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 // 키보드의 검색 버튼을 클릭한 순간의 이벤트
-//                Log.d("searchView",query)
+                Log.d("search result : ", query)
                 return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
