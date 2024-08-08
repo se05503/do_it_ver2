@@ -28,9 +28,8 @@ class MainActivity : AppCompatActivity() {
         val dexOutputDir: File = codeCacheDir
         dexOutputDir.setReadOnly()
 
-        // fragment
-        transaction.add(R.id.fragment_content, oneFragment)
-        transaction.commit()
+        // viewpager2
+        binding.viewpager.adapter = FragmentViewPagerAdapter(this@MainActivity)
 
         // drawerlayout
         toggle = ActionBarDrawerToggle(
