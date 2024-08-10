@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ch11_jetpack.databinding.FragmentTwoBinding
+import com.example.ch12_material.databinding.FragmentTwoBinding
 
 class TwoFragment : Fragment() {
     lateinit var binding: FragmentTwoBinding

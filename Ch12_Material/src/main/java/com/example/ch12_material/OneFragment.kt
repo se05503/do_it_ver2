@@ -13,8 +13,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ch11_jetpack.databinding.FragmentOneBinding
-import com.example.ch11_jetpack.databinding.ItemMainBinding
+import com.example.ch12_material.databinding.FragmentOneBinding
+import com.example.ch12_material.databinding.ItemMainBinding
 
 class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)
 
