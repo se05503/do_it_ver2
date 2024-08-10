@@ -9,7 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.ch11_jetpack.databinding.ActivityMainBinding
+import com.example.ch12_material.databinding.ActivityMainBinding
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // toolbar → 액션바의 내용이 툴바에 적용됨
+        setSupportActionBar(binding.toolbar)
 
         // SecurityException resolve
         val dexOutputDir: File = codeCacheDir
