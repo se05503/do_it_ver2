@@ -51,6 +51,17 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="extended fab"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_plus"
+            app:layout_anchor="@id/viewpager"
+            app:layout_anchorGravity="bottom|right"
+            android:layout_margin="10dp"/>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
