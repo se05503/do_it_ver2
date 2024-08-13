@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.ch12_material.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         // viewpager2
         binding.viewpager.adapter = FragmentViewPagerAdapter(this@MainActivity)
+
+        // tabLayout 과 viewpager 연동
+        TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
+            tab.text = "TAB${position + 1}"
+        }.attach()
 
         // drawerlayout
         toggle = ActionBarDrawerToggle(
@@ -66,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // 이벤트가 토글 버튼에서 발생하는 경우
-        if(toggle.onOptionsItemSelected(item)) {
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
