@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         val dexOutputDir: File = codeCacheDir
         dexOutputDir.setReadOnly()
 
+        // actionbar 내용을 toolbar 에 적용
+        setSupportActionBar(binding.toolbar)
+
         binding.extendedFab.setOnClickListener {
             // 할 일 등록 화면(AddActivity)로 이동 → intent 사용
             val intent: Intent = Intent(this@MainActivity, AddActivity::class.java) // 컴포넌트의 정보를 intent에 담음, 클래스 타입 레퍼런스 정보
