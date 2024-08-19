@@ -28,12 +28,9 @@ class AddActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.save -> {
-            // MainActivity 로 돌아가기 + 기능 추가
-//            finish()
-            Log.d("왜 안보내져: ", binding.etTodo.text.toString())
-            val intent = Intent(this@AddActivity, MainActivity::class.java)
             intent.putExtra("Todo", binding.etTodo.text.toString())
-            startActivity(intent)
+            setResult(RESULT_OK, intent)
+            finish()
             true
         }
         else -> super.onOptionsItemSelected(item)
