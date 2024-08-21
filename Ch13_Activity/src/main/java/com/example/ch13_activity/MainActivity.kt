@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ch13_activity.databinding.ActivityMainBinding
 import java.io.File
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var requestLauncher: ActivityResultLauncher<Intent>
+    val datas = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         // actionbar 내용을 toolbar 에 적용
         setSupportActionBar(binding.toolbar)
 
+        // recyclerview
+        binding.recyclerView.adapter = MyAdapter(datas)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+
         // ActivityResultLauncher
         requestLauncher = registerForActivityResult(
             // Contract 객체 (실제 작업자)
@@ -35,7 +43,10 @@ class MainActivity : AppCompatActivity() {
             // Callback 객체 (결과 처리)
             if (it.resultCode == Activity.RESULT_OK) {
                 val todoList = it.data?.getStringExtra("Todo")
-                binding.tvTemp.text = "result: $todoList"
+                if(todoList != null && todoList != "") {
+                    datas.add(todoList)
+                    (binding.recyclerView.adapter as MyAdapter).notifyDataSetChanged()
+                }
             }
         }
 
@@ -47,5 +58,7 @@ class MainActivity : AppCompatActivity() {
             ) // 컴포넌트의 정보를 intent에 담음, 클래스 타입 레퍼런스 정보
             requestLauncher.launch(intent)
         }
+
+
     }
 }
