@@ -14,6 +14,8 @@
             <option value="$PROJECT_DIR$/Ch12_Material" />
             <option value="$PROJECT_DIR$/Ch13_Activity" />
             <option value="$PROJECT_DIR$/Ch14_Receiver" />
+            <option value="$PROJECT_DIR$/Ch15_Outer" />
+            <option value="$PROJECT_DIR$/Ch15_Service" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
