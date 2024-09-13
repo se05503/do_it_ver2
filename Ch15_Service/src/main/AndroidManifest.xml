@@ -28,7 +28,8 @@
         </activity>
         <service android:name=".MyJobService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>
 
 </manifest>
