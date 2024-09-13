@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 나는 Outer 모듈 앱의 서비스를 이용하기 위해선 접근해야해! -->
+    <queries>
+        <package android:name="com.example.ch15_outer"/>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +26,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <service android:name=".MyJobService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

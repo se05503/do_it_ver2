@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- startForeground 를 사용하기 위해 필요함 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Do_it_ver2">
         <service
-            android:name=".MyMessengerService"
+            android:name=".MessengerService"
             android:enabled="true"
-            android:exported="true"></service>
-
+            android:exported="true">
+            <!-- Service 외부 앱아! 나를 실행하려면 다음 액션을 적으면 돼!-->
+            <intent-filter>
+                <action android:name="ACTION_SERVICE_Messenger"/>
+            </intent-filter>
+        </service>
+        <service android:name=".MyAIDLService"
+            android:enabled="true"
+            android:exported="true">
+            <!-- Service 외부 앱아! AIDL를 구현한 나를 실행하려면 다음 액션을 적으면 돼!-->
+            <intent-filter>
+                <action android:name="ACTION_SERVICE_AIDL"/>
+            </intent-filter>
+        </service>
         <activity
             android:name=".MainActivity"
             android:exported="true">

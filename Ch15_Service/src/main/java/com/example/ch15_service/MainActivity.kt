@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.os.Messenger
@@ -41,9 +42,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent("ACTION_SERVICE_AIDL")
-        intent.setPackage("com.example.ch15_outer")
-        bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        // Android Version 8 부터 서비스에서 백그라운드 제약 발생
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val intent = Intent("ACTION_SERVICE_AIDL")
+            intent.setPackage("com.example.ch15_outer")
+            // 앱이 백그라운드 상황일 때도 서비스를 실행하겠다!
+            startForegroundService(intent)
+        } else {
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
 
         binding.messengerPlayStart.setOnClickListener {
 
