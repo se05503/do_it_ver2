@@ -1,6 +1,7 @@
 package com.example.ch16_provider
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -55,6 +56,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val requestCameraThumbnailLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) {
+            // "data" 키 값 : 안드로이드에서 카메라 앱이 썸네일 이미지를 반환할 때 사용하는 표준 키
+            val bitmap = it.data?.extras?.get("data") as Bitmap
+            binding.ivProfile.setImageBitmap(bitmap)
+        }
+
+
 
         binding.btnGallery.setOnClickListener {
             /*
@@ -70,6 +79,8 @@ class MainActivity : AppCompatActivity() {
             카메라 앱과 연동
             사진을 촬영한 후 확인을 누르면 사진이 뷰에 반영됨
              */
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            requestCameraThumbnailLauncher.launch(intent)
         }
     }
 
